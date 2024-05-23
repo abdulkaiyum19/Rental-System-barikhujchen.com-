@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Owner</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .profile {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .profile img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .profile-info {
+            flex: 1;
+        }
+
+        .profile-info h2 {
+            margin: 0;
+            color: #333;
+        }
+
+        .profile-info p {
+            margin: 5px 0;
+            color: #555;
+        }
+
+        .profile button {
+            padding: 8px 15px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .profile button:hover {
+            background-color: #0056b3;
+        }
+
+        .chat-box {
+            height: 200px;
+            overflow-y: scroll;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+
+        .message {
+            background-color: #f9f9f9;
+            padding: 8px;
+            border-radius: 5px;
+            margin-bottom: 5px;
+            overflow-wrap: break-word;
+        }
+
+        .message.sender {
+            background-color: #007bff;
+            color: #fff;
+            text-align: right;
+        }
+
+        .message.receiver {
+            background-color: #e5e5ea;
+            color: #000;
+            text-align: left;
+        }
+
+        .message .meta {
+            font-size: 12px;
+            color: #999;
+            margin-top: 3px;
+        }
+
+        .input-box {
+            display: flex;
+        }
+
+        .input-box input[type="text"] {
+            flex: 1;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+
+        .input-box button {
+            padding: 8px 15px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .input-box button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="profile">
+            <img src="/Apon Thikana/Photos/AKP.jpg" alt="Profile Picture">
+            <div class="profile-info">
+                <h2>Abdul Kaiyum</h2>
+                <p>Mobile: 123-456-7890</p>
+                <p>Location: Rajshahi</p>
+            </div>
+            <button onclick="callOwner('123-456-7890')">Call Owner</button>
+        </div>
+        <div class="chat-box" id="chatBox">
+            <!-- Chat messages will be displayed here -->
+        </div>
+        <div class="input-box">
+            <input type="text" id="messageInput" placeholder="Type your message...">
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+
+    <script>
+        function callOwner(phoneNumber) {
+            window.location.href = 'tel:' + phoneNumber;
+        }
+
+        function getCurrentTime() {
+            var now = new Date();
+            var hours = now.getHours();
+            var minutes = now.getMinutes();
+            var ampm = hours >= 12 ? 'PM' : 'AM';
+            hours = hours % 12;
+            hours = hours ? hours : 12; // handle midnight
+            minutes = minutes < 10 ? '0' + minutes : minutes;
+            var timeString = hours + ':' + minutes + ' ' + ampm;
+            return timeString;
+        }
+
+        function sendMessage() {
+            var messageInput = document.getElementById("messageInput");
+            var message = messageInput.value.trim();
+            if (message !== "") {
+                var chatBox = document.getElementById("chatBox");
+                var messageElement = document.createElement("div");
+                messageElement.classList.add("message", "sender");
+                messageElement.innerHTML = `
+                    <div>${message}</div>
+                    <div class="meta">You - ${getCurrentTime()}</div>`;
+                chatBox.appendChild(messageElement);
+                chatBox.scrollTop = chatBox.scrollHeight;
+                messageInput.value = "";
+            }
+        }
+    </script>
+</body>
+</html>

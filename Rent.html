@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>House Rental Website</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #ffffff, #ffffff);
+            background-image: url('bg2.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+        header {
+            color: #57a350;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .header-icons {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .animated-header {
+            color: #57a350;
+            padding: 15px;
+            text-align: center;
+            white-space: nowrap; /* Prevent text from wrapping */
+            animation: fadeIn 2s ease-out forwards; /* Apply animation */
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .login-link,
+        .post-link {
+            color: #000000;
+            text-decoration: none;
+            padding: 15px;
+            border: 1px solid #fff;
+            border-radius: 4px;
+            margin-right: 10px;
+            background: linear-gradient(to right, #dadde352, #c1e9e4b3);
+        }
+
+        .login-link:hover,
+        .post-link:hover {
+            background: linear-gradient(to right, #8ed291d8, #336235a4);
+        }
+
+        section {
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.277);
+            margin: 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        .category-posts {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            text-align: center;
+            flex-wrap: wrap;
+        }
+
+        .block {
+            flex: 1;
+            max-width: 300px;
+            background: rgba(255, 255, 255, 0.285);
+            border-radius: 8px;
+            border: 2px solid rgba(174, 201, 187, 0.473);
+            padding: 20px;
+            box-sizing: border-box;
+            margin: 10px;
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+
+        .block:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .block h2 {
+            font-size: 24px;
+            color: #000000;
+            margin-bottom: 10px;
+            border-bottom: 2px solid;
+            padding-bottom: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .icon {
+            font-size: 32px;
+            margin-right: 10px;
+        }
+
+        .post-item a {
+            color: #000000;
+            text-decoration: none;
+            display: block;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            text-align: left;
+            box-sizing: border-box;
+            width: 100%;
+            transition: background 0.3s;
+        }
+
+        .post-item a:hover {
+            background: linear-gradient(to right, #2e7d32, #1e5e21);
+            color: #fff;
+        }
+
+        footer {
+            background: linear-gradient(to right, #3333335d, #1a1a1a50);
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+       
+        /* Add styles for the dropdown */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-toggle {
+            color: #000;
+            text-decoration: none;
+            padding: 10px 20px;
+            margin: 0px 10px;
+            border-radius: 4px;
+            background: #fff;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+            z-index: 10;
+            border-radius: 8px;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            transition: background 0.3s;
+        }
+
+        .dropdown-content a:hover {
+            background: linear-gradient(to right, #8ed291d8, #336235a4);
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        nav {
+            position: absolute;
+            top: 40px;
+            right: 40px;
+        }
+
+        nav a {
+            color: #000;
+            text-decoration: none;
+            padding: 10px 20px;
+            margin: 0 10px;
+            border-radius: 4px;
+            background: #ffffff90;
+        }
+
+        nav a:hover {
+            background: linear-gradient(to right, #87c0eb77, #dbe7dca4);
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="header-icons">
+            <h3 class="animated-header">"Find Your Dream Home"</h3> <!-- New animated header -->
+            <div class="right">
+
+            </div>
+            </div>
+        </div>
+    </header>
+
+    <section id="main-content">
+        <div class="category-posts">
+            <!-- Mess block -->
+            <div class="block">
+                <h2>Mess <span class="icon">&#x1F6AA;</span></h2>
+                <div class="post-item"><a href="/Apon Thikana/SingleRoom.html">Single Room</a></div>
+                <div class="post-item"><a href="/Apon Thikana/doubleroom.html">Double Room</a></div>
+            </div>
+            <!-- Home block -->
+            <div class="block">
+                <h2>Home <span class="icon">&#x1F3E0;</span></h2>
+                <div class="post-item"><a href="/Apon Thikana/SubLethome.html">Sublet</a></div>
+                <div class="post-item"><a href="/Apon Thikana/FullHouse.html">Full Flat</a></div>
+            </div>
+        </div>
+    </section>
+    
+    <nav>
+        <!-- <a href="#">About Us</a> -->
+        <div class="dropdown">
+            <a href="#" class="dropdown-toggle">Food Service</a>
+            <div class="dropdown-content">
+                <a href="/Apon Thikana/food.html"> Order Now</a>
+                <!-- <a href="#">Weekly/Monthly</a>
+                <a href="#">Breakfast/Lunch/Dinner</a> -->
+            </div>
+        </div>
+        <div class="dropdown">
+            <a href="#" class="dropdown-toggle">Cleaning Services</a>
+            <div class="dropdown-content">
+                <a href="#">Cloths</a>
+                <a href="#">Room/Mess/Wash-Room</a>
+                <a href="#">Others</a>
+            </div>
+        </div>
+    </nav>
+
+    <footer>
+        &copy; barikhujchen.com || All rights reserved.
+    </footer>
+
+</body>
+
+</html>

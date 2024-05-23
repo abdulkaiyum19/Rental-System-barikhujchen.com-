@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rental Post - Full Flat</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #ffffff, #ffffff);
+        }
+
+        header {
+            background-color: rgba(27, 109, 58, 0.336);
+            color:black;
+            padding: 15px;
+            text-align: center;
+        }
+
+        section {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: 20px;
+            text-align: center;
+        }
+
+        .rental-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        .rental {
+            flex: 1;
+            margin: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-sizing: border-box;
+            transition: transform 0.3s;
+            cursor: pointer;
+            max-width: 300px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .rental:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .rental img {
+            max-width: 100%;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            transition: opacity 0.3s;
+        }
+
+        .rental:hover img {
+            opacity: 0.8;
+        }
+
+        .rental h2 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .rental p {
+            color: #555;
+            margin-bottom: 8px;
+        }
+
+        .rental-details {
+            display: none;
+            margin-top: 10px;
+        }
+
+        .rental-details p {
+            margin-bottom: 8px;
+        }
+
+        .rental button {
+            background-color: #4caf50;
+            color: #fff;
+            padding: 8px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .rental button:hover {
+            background-color: #45a049;
+        }
+        .rental button a{
+            text-decoration: none;
+            color: inherit;
+        }
+
+        footer {
+            background: linear-gradient(to right, #333, #1a1a1a);
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Rental Post - Full Flat</h1>
+</header>
+
+<section>
+    <div class="rental-container">
+        <div class="rental" onclick="toggleDetails('rental1')">
+            <img src="/Apon Thikana/Photos/bed3.jpg" alt="Home 1">
+            <h2>Home for Rent 1</h2>
+            <p>Monthly Rent: $1500</p>
+            <p>Location: Location 1</p>
+            <div class="rental-details" id="rental1">
+                <p>Bedrooms: 3</p>
+                <p>Bathrooms: 2</p>
+                <p>Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+                <!-- Add more details as needed -->
+                <button>
+                    <a href="/Apon Thikana/Contact.html" class="login-link">Chat With Owner</a>
+                </button>
+            </div>
+        </div>
+
+        <!-- Add more rental posts as needed -->
+        <div class="rental" onclick="toggleDetails('rental2')">
+            <img src="/Apon Thikana/Photos/bed2.jpg" alt="Home 2">
+            <h2>Home for Rent 2</h2>
+            <p>Monthly Rent: $1200</p>
+            <p>Location: Location 2</p>
+            <div class="rental-details" id="rental2">
+                <p>Bedrooms: 2</p>
+                <p>Bathrooms: 1</p>
+                <p>Description: Another beautiful home for rent...</p>
+                <!-- Add more details as needed -->
+                <button>
+                    <a href="/Apon Thikana/Contact.html" class="login-link">Chat With Owner</a>
+                </button>
+            </div>
+        </div>
+
+        <!-- Add more rental posts as needed -->
+        <div class="rental" onclick="toggleDetails('rental3')">
+            <img src="/Apon Thikana/Photos/bed3.jpg" alt="Home 3">
+            <h2>Home for Rent 3</h2>
+            <p>Location: Location 3</p>
+            <p>Monthly Rent: $1800</p>
+            <div class="rental-details" id="rental3">
+                <p>Bedrooms: 4</p>
+                <p>Bathrooms: 2.5</p>
+                <p>Description: Spacious home with a great view...</p>
+                <!-- Add more details as needed -->
+                <button>
+                    <a href="/Apon Thikana/Contact.html" class="login-link">Chat With Owner</a>
+                </button>
+            </div>
+        </div>
+
+        <!-- Add more rental posts as needed -->
+        <div class="rental" onclick="toggleDetails('rental4')">
+            <img src="/Apon Thikana/Photos/bed2.jpg" alt="Home 4">
+            <h2>Home for Rent 4</h2>
+            <p>Monthly Rent: $1600</p>
+            <p>Location: Location 4</p>
+            <div class="rental-details" id="rental4">
+                <p>Bedrooms: 3</p>
+                <p>Bathrooms: 2.5</p>
+                <p>Description: Cozy home with a beautiful garden...</p>
+                <!-- Add more details as needed -->
+                <button>
+                    <a href="/Apon Thikana/Contact.html" class="login-link">Chat With Owner</a>
+                </button>
+            </div>
+        </div>
+
+        <!-- Add more rental posts as needed -->
+        <div class="rental" onclick="toggleDetails('rental5')">
+            <img src="/Apon Thikana/Photos/bed1.jpg" alt="Home 5">
+            <h2>Home for Rent 5</h2>
+            <p>Monthly Rent: $2000</p>
+            <p>Location: Location 5</p>
+            <div class="rental-details" id="rental5">
+                <p>Bedrooms: 5</p>
+                <p>Bathrooms: 3</p>
+                <p>Description: Modern home with all amenities...</p>
+                <!-- Add more details as needed -->
+                <button>
+                    <a href="/Apon Thikana/Contact.html" class="login-link">Chat With Owner</a>
+                </button>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<footer>
+    &copy; 2024 Rental Post - Home. All rights reserved.
+</footer>
+
+<script>
+    function toggleDetails(id) {
+        const details = document.getElementById(id);
+        details.style.display = details.style.display === 'block' ? 'none' : 'block';
+    }
+</script>
+
+</body>
+</html>

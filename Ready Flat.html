@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rental Post - Home</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #ffffff, #ffffff);
+        }
+
+        header {
+            background-color: rgba(27, 109, 58, 0.336);
+            color:black;
+            padding: 15px;
+            text-align: center;
+        }
+
+        section {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: 20px;
+            text-align: center;
+        }
+
+        .rental-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        .rental {
+            flex: 1 0 19%;
+            margin: 10px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-sizing: border-box;
+            transition: transform 0.3s;
+            cursor: pointer;
+            max-width: 300px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .rental:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .rental img {
+            max-width: 100%;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            transition: opacity 0.3s;
+        }
+
+        .rental:hover img {
+            opacity: 0.8;
+        }
+
+        .rental h2 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .rental p {
+            color: #555;
+            margin-bottom: 8px;
+        }
+
+        .rental-details {
+            display: none;
+            margin-top: 10px;
+        }
+
+        .rental-details p {
+            margin-bottom: 8px;
+        }
+
+        .rental button {
+            background-color: #4caf50;
+            color: #fff;
+            padding: 8px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .rental button:hover {
+            background-color: #45a049;
+        }
+        .rental button a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        footer {
+            background: linear-gradient(to right, #333, #1a1a1a);
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .options {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .options select {
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            margin: 0 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>Ready Flat Buy and Sell</h1>
+</header>
+
+<section>
+    <div class="options">
+        <label for="category">Category:</label>
+        <select name="category" id="category" onchange="filterListings()">
+            <option value="all">All</option>
+            <option value="buy">Buy</option>
+            <option value="sell">Sell</option>
+        </select>
+        <label for="location">Location:</label>
+        <select name="location" id="location" onchange="filterListings()">
+            <option value="all">All</option>
+            <option value="Location 1">Location 1</option>
+            <option value="Location 2">Location 2</option>
+            <!-- Add more locations as needed -->
+        </select>
+        <label for="sort">Sort By:</label>
+        <select name="sort" id="sort" onchange="sortListings()">
+            <option value="priceLowToHigh">Price: Low to High</option>
+            <option value="priceHighToLow">Price: High to Low</option>
+        </select>
+    </div>
+
+    <div class="rental-container" id="rentalContainer">
+        <!-- Rental listings will be inserted here dynamically -->
+    </div>
+</section>
+
+<footer>
+    &copy; 2024 Rental Post - Home. All rights reserved.
+</footer>
+
+<script>
+    const rentals = [
+        {
+            id: 1,
+            category: 'buy',
+            image: '/HTML/bed3.jpg',
+            title: 'Home for Sale 1',
+            price: 250000,
+            location: 'Location 1',
+            bedrooms: 3,
+            bathrooms: 2,
+            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit...',
+            contact: 'John Doe - john@example.com'
+        },
+        {
+            id: 2,
+            category: 'sell',
+            image: '/HTML/bed2.jpg',
+            title: 'Home for Sale 2',
+            price: 300000,
+            location: 'Location 2',
+            bedrooms: 4,
+            bathrooms: 3,
+            description: 'Another beautiful home for sale...',
+            contact: 'Jane Smith - jane@example.com'
+        },
+        {
+            id: 3,
+            category: 'buy',
+            image: '/HTML/bed3.jpg',
+            title: 'Home for Sale 1',
+            price: 250000,
+            location: 'Location 1',
+            bedrooms: 3,
+            bathrooms: 2,
+            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit...',
+            contact: 'John Doe - john@example.com'
+        },
+        {
+            id: 4,
+            category: 'sell',
+            image: '/HTML/bed3.jpg',
+            title: 'Home for Sale 1',
+            price: 250000,
+            location: 'Location 1',
+            bedrooms: 3,
+            bathrooms: 2,
+            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit...',
+            contact: 'John Doe - john@example.com'
+        },
+       
+        // Add more rental listings as needed
+    ];
+
+    // Function to filter and display rental listings based on category and location
+    function filterListings() {
+        const category = document.getElementById('category').value;
+        const location = document.getElementById('location').value;
+        const rentalContainer = document.getElementById('rentalContainer');
+        rentalContainer.innerHTML = '';
+
+        rentals.filter(rental => (category === 'all' || rental.category === category) &&
+            (location === 'all' || rental.location === location))
+            .forEach(rental => {
+                const rentalDiv = document.createElement('div');
+                rentalDiv.classList.add('rental');
+                rentalDiv.onclick = function () {
+                    toggleDetails(`rental${rental.id}`);
+                };
+
+                rentalDiv.innerHTML = `
+                    <img src="${rental.image}" alt="${rental.title}">
+                    <h2>${rental.title}</h2>
+                    <p>Price: $${rental.price.toLocaleString()}</p>
+                    <p>Location: ${rental.location}</p>
+                    <div class="rental-details" id="rental${rental.id}">
+                        <p>Bedrooms: ${rental.bedrooms}</p>
+                        <p>Bathrooms: ${rental.bathrooms}</p>
+                        <p>Description: ${rental.description}</p>
+                        <p>Contact: ${rental.contact}</p>
+                        <button>
+                    <a href="/Rental Website/Contact.html" class="login-link">Chat With Owner</a>
+                </button>
+                    </div>
+                `;
+
+                rentalContainer.appendChild(rentalDiv);
+            });
+    }
+
+    // Function to sort rental listings based on selected option
+    function sortListings() {
+        const sortOption = document.getElementById('sort').value;
+        switch (sortOption) {
+            case 'priceLowToHigh':
+                rentals.sort((a, b) => a.price - b.price);
+                break;
+            case 'priceHighToLow':
+                rentals.sort((a, b) => b.price - a.price);
+                break;
+            default:
+                break;
+        }
+        filterListings();
+    }
+
+    // Function to toggle rental details visibility
+    function toggleDetails(id) {
+        const details = document.getElementById(id);
+        details.style.display = details.style.display === 'block' ? 'none' : 'block';
+    }
+
+    // Initial call to display all rental listings
+    filterListings();
+</script>
+
+</body>
+</html>

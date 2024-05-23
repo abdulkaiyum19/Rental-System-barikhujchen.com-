@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Service</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+        }
+        h1 {
+            margin: 0;
+        }
+        .restaurants {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+        }
+        .restaurant {
+            width: 300px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .restaurant img {
+            width: 100%;
+            height: auto;
+            cursor: pointer; /* Add cursor pointer for better UX */
+        }
+        .menu-item {
+            padding: 10px;
+            background-color: #f9f9f9;
+            cursor: pointer;
+        }
+        .menu-item h3 {
+            margin: 5px 0;
+        }
+        .menu-item p {
+            margin: 5px 0;
+        }
+        .contact-info {
+            display: none;
+            padding: 10px;
+            background-color: #f0f0f0;
+        }
+        .contact-info.show {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Food Service</h1>
+    </header>
+    <div class="restaurants">
+        <div class="restaurant">
+            <img src="/HTML/food (1).jpg" alt="Food 1" onclick="showContact('Restaurant 1', 'restaurant1@example.com')">
+            <div class="menu-item" onclick="showContact('Restaurant 1', 'restaurant1@example.com')">
+                <h3>Special Menu 1</h3>
+                <p>Description of the special menu...</p>
+                <p>Price: $10.99</p>
+            </div>
+            <div class="contact-info" id="contact-info-1">
+                <p>Contact Restaurant 1 Owner:</p>
+                <p>Email: <a href="mailto:restaurant1@example.com">restaurant1@example.com</a></p>
+            </div>
+        </div>
+        <!-- Add more restaurants with their menus here -->
+        <!-- Repeat the above structure for each restaurant -->
+        <div class="restaurant">
+            <img src="/HTML/food (2).jpg" alt="Food 2" onclick="showContact('Restaurant 2', 'restaurant2@example.com')">
+            <div class="menu-item" onclick="showContact('Restaurant 2', 'restaurant2@example.com')">
+                <h3>Special Menu 2</h3>
+                <p>Description of the special menu...</p>
+                <p>Price: $9.99</p>
+            </div>
+            <div class="contact-info" id="contact-info-2">
+                <p>Contact Restaurant 2 Owner:</p>
+                <p>Email: <a href="mailto:restaurant2@example.com">restaurant2@example.com</a></p>
+            </div>
+        </div>
+        <!-- Add more restaurants with their menus here -->
+        <!-- Repeat the above structure for each restaurant -->
+    </div>
+
+    <script>
+        function showContact(restaurantName, ownerEmail) {
+            var contactInfo = document.getElementById("contact-info-" + restaurantName);
+            if (contactInfo.classList.contains("show")) {
+                contactInfo.classList.remove("show");
+            } else {
+                var allContactInfo = document.querySelectorAll(".contact-info");
+                allContactInfo.forEach(function(item) {
+                    item.classList.remove("show");
+                });
+                contactInfo.classList.add("show");
+            }
+        }
+    </script>
+</body>
+</html>

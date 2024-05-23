@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Property Management System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 15px 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+
+        section {
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            padding: 10px;
+            background-color: #f4f4f4;
+            border-radius: 5px;
+            margin-bottom: 5px;
+            cursor: pointer;
+        }
+
+        li:hover {
+            background-color: #ddd;
+        }
+
+        #property-details {
+            display: none;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #add-property-form {
+            display: none;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        input, select, textarea {
+            margin-bottom: 10px;
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        img {
+            max-width: 100%;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Property Management System</h1>
+    </header>
+
+    <div class="container">
+        <!-- Add Property Button -->
+        <button id="add-property-btn">Add New Property</button>
+
+        <!-- Add Property Form -->
+        <section id="add-property-form">
+            <h2>Add New Property</h2>
+            <form id="property-form">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="price">Price:</label>
+                <input type="text" id="price" name="price" required>
+
+                <label for="location">Location:</label>
+                <select id="location" name="location">
+                    <option value="City A">City A</option>
+                    <option value="City B">City B</option>
+                    <option value="City C">City C</option>
+                </select>
+
+                <label for="description">Description:</label>
+                <textarea id="description" name="description" rows="4"></textarea>
+
+                <label for="image">Image URL:</label>
+                <input type="text" id="image" name="image">
+
+                <button type="submit">Add Property</button>
+            </form>
+        </section>
+
+        <!-- Property List -->
+        <section id="property-list">
+            <h2>Properties</h2>
+            <ul id="properties">
+                <!-- Property items will be dynamically added here -->
+            </ul>
+        </section>
+
+        <!-- Property Details -->
+        <section id="property-details">
+            <h2>Property Details</h2>
+            <div id="details">
+                <!-- Property details will be displayed here -->
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Sample property data (can be retrieved from a server)
+        let properties = [
+            { id: 1, name: 'Property 1', price: '$100,000', location: 'City A', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', image: 'https://via.placeholder.com/150' },
+            { id: 2, name: 'Property 2', price: '$150,000', location: 'City B', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', image: 'https://via.placeholder.com/150' },
+            { id: 3, name: 'Property 3', price: '$200,000', location: 'City C', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', image: 'https://via.placeholder.com/150' }
+        ];
+
+        // Display properties
+        const propertyList = document.getElementById('properties');
+        function displayProperties() {
+            propertyList.innerHTML = '';
+            properties.forEach(property => {
+                const listItem = document.createElement('li');
+                listItem.textContent = `${property.name} - ${property.price}`;
+                listItem.setAttribute('data-id', property.id);
+                propertyList.appendChild(listItem);
+
+                // Add click event to each property item
+                listItem.addEventListener('click', () => {
+                    showPropertyDetails(property);
+                });
+            });
+        }
+        displayProperties();
+
+        // Function to display property details
+        function showPropertyDetails(property) {
+            const detailsSection = document.getElementById('property-details');
+            const details = document.getElementById('details');
+            details.innerHTML = `
+                <h3>${property.name}</h3>
+                <p>Price: ${property.price}</p>
+                <p>Location: ${property.location}</p>
+                <p>Description: ${property.description}</p>
+                <img src="${property.image}" alt="${property.name}">
+            `;
+            detailsSection.style.display = 'block';
+        }
+
+        // Add Property Button functionality
+        const addPropertyBtn = document.getElementById('add-property-btn');
+        const addPropertyForm = document.getElementById('add-property-form');
+        addPropertyBtn.addEventListener('click', () => {
+            addPropertyForm.style.display = 'block';
+        });
+
+        // Add Property Form submission
+        const propertyForm = document.getElementById('property-form');
+        propertyForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            const price = document.getElementById('price').value;
+            const location = document.getElementById('location').value;
+            const description = document.getElementById('description').value;
+            const image = document.getElementById('image').value;
+            const id = properties.length + 1;
+            const newProperty = { id, name, price, location, description, image };
+            properties.push(newProperty);
+            addPropertyForm.style.display = 'none';
+            displayProperties();
+        });
+    </script>
+</body>
+</html>
